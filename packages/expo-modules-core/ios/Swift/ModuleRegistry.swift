@@ -7,12 +7,14 @@ public final class ModuleRegistry: Sequence {
 
   init(appContext: AppContext) {
     self.appContext = appContext
+    log.stacktrace()
   }
 
   /**
    Registers an instance of module holder.
    */
   internal func register(holder: ModuleHolder) {
+    log("Registering module '\(holder.name)'")
     registry[holder.name] = holder
   }
 
@@ -47,7 +49,10 @@ public final class ModuleRegistry: Sequence {
   }
 
   public func unregister(moduleName: String) {
-    registry[moduleName] = nil
+    if registry[moduleName] != nil {
+      log.debug("Unregistering module '\(moduleName)'")
+      registry[moduleName] = nil
+    }
   }
 
   public func has(moduleWithName moduleName: String) -> Bool {
@@ -71,12 +76,14 @@ public final class ModuleRegistry: Sequence {
   }
 
   internal func post(event: EventName) {
+    log.trace("Posting '\(event)' event to registered modules")
     forEach { holder in
       holder.post(event: event)
     }
   }
 
   internal func post<PayloadType>(event: EventName, payload: PayloadType? = nil) {
+    log.trace("Posting '\(event)' event to registered modules")
     forEach { holder in
       holder.post(event: event, payload: payload)
     }

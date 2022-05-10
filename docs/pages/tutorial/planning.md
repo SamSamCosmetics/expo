@@ -15,3 +15,4 @@ Inside your preferred directory for storing your software projects, run `expo in
 
 - ⬅️ If you have any trouble with this, please refer back to the ["Create a new app" page](../get-started/create-a-new-app.md).
 - ➡️ If your app is up and running, it is time to [continue to the next step](../tutorial/text.md).
+https://shopee.vn/baeyoung960
